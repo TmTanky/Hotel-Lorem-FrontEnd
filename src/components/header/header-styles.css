@@ -1,0 +1,23 @@
+nav {
+    display: flex;
+    padding: 1rem 0rem;
+    border-bottom: solid 0.1px gray;
+}
+
+.navlogo {
+    flex: 1;
+    margin: auto;
+    margin-left: 2rem;
+}
+
+.navlinks {
+    flex: 4;
+    display: flex;
+    margin: auto;
+    justify-content: flex-end;
+    margin-right: 3rem;
+}
+
+.navlinks a {
+    margin: 0rem 1rem;
+}

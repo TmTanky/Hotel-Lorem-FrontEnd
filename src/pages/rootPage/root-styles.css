@@ -1,0 +1,76 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+/* section1 */
+
+.sec1 {
+    display: flex;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.intro1, .intro2 {
+    flex: 1;
+    margin: auto;
+}
+
+.intro1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0rem 3rem;
+}
+
+.intro1 h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.intro2 {
+    margin: 1rem;
+}
+
+.getstartedbtn {
+    margin-top: 0.5rem;
+    width: 100px;
+    padding: 0.5rem 0rem;
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+/* section2 */
+
+.sec2 {
+    display: flex;
+    padding: 2rem 0rem;
+}
+
+.sec2 div {
+    margin: 1rem 2rem;
+}
+
+.sec2 div h1 {
+    margin-bottom: 1rem;
+}
+
+/* section3 */
+
+.sec3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 10rem;
+    margin: 0rem 2rem;
+}
+
+.footerlogo h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
