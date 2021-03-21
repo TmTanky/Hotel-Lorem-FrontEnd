@@ -6,7 +6,7 @@ import './root-styles.css'
 const RootPage = () => {
 
     return (
-        <main>
+        <main className="main1">
 
             <section className="sec1">
                 <div className="intro1">

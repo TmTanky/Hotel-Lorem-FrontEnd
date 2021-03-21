@@ -1,0 +1,24 @@
+.main2 {
+    display: flex;
+    min-height: 85vh;
+}
+
+.loginform {
+    flex: 1;
+    display: flex;
+    margin: auto 2rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loginform h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.loginsidebg {
+    flex: 1;
+    background-size: cover;
+    height: 31.25rem;
+    width: 31.25rem;
+}

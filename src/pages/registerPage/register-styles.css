@@ -1,0 +1,12 @@
+.main3 {
+    display: flex;
+    justify-content: center;
+    min-height: 85vh;
+}
+
+.registerform {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    flex-direction: column;
+}
