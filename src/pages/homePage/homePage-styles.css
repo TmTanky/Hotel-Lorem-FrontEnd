@@ -1,0 +1,19 @@
+.main4 {
+    display: flex;
+    min-height: 85vh;
+    padding: 3rem 0rem;
+    background-color: #EEEE;
+    margin: auto ;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.roombox {
+    padding: 1rem 1rem 5rem 1rem;
+    background-color: white;
+    margin: 1rem 2rem;
+    height: 20rem;
+    width: 15rem;
+    border-radius: 5px;
+}

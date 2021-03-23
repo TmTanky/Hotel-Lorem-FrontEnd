@@ -1,0 +1,11 @@
+.roomcard h3 {
+    padding-top: 1rem;
+}
+
+.roomcard img {
+    border-radius: 3px;
+}
+
+.roomcard p {
+    margin-top: 1rem;
+}

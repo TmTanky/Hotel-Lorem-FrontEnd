@@ -3,7 +3,12 @@ import { gql } from '@apollo/client'
 export const ALL_ROOMS = gql`
     query {
         allRooms {
+            _id
             name
+            description
+            price
+            maxPersons
+            type
         },
     }
 `

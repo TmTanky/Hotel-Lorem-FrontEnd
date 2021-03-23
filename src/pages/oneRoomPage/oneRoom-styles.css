@@ -1,0 +1,27 @@
+.oneroombox {
+    min-height: 85vh;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: #EEEE;
+}
+
+.oneroomcard {
+    background-color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.oneroomcard h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.oneroomcard p {
+    margin-bottom: 0.5rem;
+}
