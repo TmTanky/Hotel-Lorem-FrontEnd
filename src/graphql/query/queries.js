@@ -20,6 +20,7 @@ export const LOGIN_USER = gql`
                 firstName
                 lastName
                 token
+                isAdmin
             }
         } 
 `

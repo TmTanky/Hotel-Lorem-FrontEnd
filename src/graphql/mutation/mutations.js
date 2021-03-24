@@ -10,3 +10,11 @@ export const REGISTER_USER = gql`
         }
     }
 `
+
+export const ADD_BOOKED_ROOM = gql`
+    mutation bookARoom($bookedBy: ID!, $theBookedRoom: ID!, $bookAt: String!) {
+        bookARoom(bookedBy: $bookedBy, theBookedRoom: $theBookedRoom, bookAt: $bookAt) {
+            _id
+        }
+    }
+`

@@ -21,7 +21,6 @@ const LoginPage = () => {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const [loginTheUser, {called, loading, data, error}] = useLazyQuery(LOGIN_USER)
 
     const [loginInputs, setLoginInputs] = useState({
         email: "",
@@ -32,35 +31,51 @@ const LoginPage = () => {
         loginError: []
     })
     const [open, setOpen] = useState(false)
-
-    const HandleLogin = (e) => {
-        e.preventDefault()
-
-        loginTheUser({
-            variables: {
-                email: loginInputs.email,
-                password: loginInputs.password
-            }
-        })
-
-        if (error) {
-            setLoginError({
-                loginError: [error.message]
-            })
-            setOpen(true)
-        }
-
-        if (called && loading) {
-            console.log(`Loading`)
-        }
-
-        if (data) {
+    const [loginTheUser, {data}] = useLazyQuery(LOGIN_USER, {
+        variables: {
+            email: loginInputs.email,
+            password: loginInputs.password
+        },
+        onCompleted: () => {
             dispatch(loginUser(data.loginUser))
             dispatch(loginSuccess())
+            localStorage.setItem('token', data.loginUser.token )
             history.push(`/rooms`)
+        },
+        onError(error) {
+            console.log(error)
         }
+    })
+
+    // const HandleLogin = (e) => {
+    //     e.preventDefault()
+
+    //     loginTheUser({
+    //         variables: {
+    //             email: loginInputs.email,
+    //             password: loginInputs.password
+    //         }
+    //     })
+
+    //     if (error) {
+    //         setLoginError({
+    //             loginError: [error.message]
+    //         })
+    //         setOpen(true)
+    //     }
+
+    //     if (called && loading) {
+    //         console.log(`Loading`)
+    //     }
+
+    //     if (data) {
+    //         dispatch(loginUser(data.loginUser))
+    //         dispatch(loginSuccess())
+    //         localStorage.setItem('token', data.loginUser.token )
+    //         history.push(`/rooms`)
+    //     }
         
-    }
+    // }
 
     const handleLoginChange = (e) => {
         const {value, name} = e.target
@@ -106,7 +121,7 @@ const LoginPage = () => {
                     }) : ""}
                 <TextField type="email" name="email" label="Email" variant="outlined" autoFocus style={{marginBottom: '1rem'}} onChange={handleLoginChange} value={loginInputs.email} />
                 <TextField type="password" name="password" label="Password" variant="outlined" onChange={handleLoginChange} value={loginInputs.password} />
-                <Button onClick={HandleLogin} variant="contained" style={{marginTop: '0.5rem'}}> Login </Button>
+                <Button onClick={loginTheUser} variant="contained" style={{marginTop: '0.5rem'}}> Login </Button>
                 <Link to="/register" style={{marginTop: '0.5rem', fontSize: '0.9rem'}}> No account? Register now </Link>
             </form>
 
