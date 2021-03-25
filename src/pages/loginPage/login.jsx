@@ -43,39 +43,12 @@ const LoginPage = () => {
             history.push(`/rooms`)
         },
         onError(error) {
-            console.log(error)
+            setLoginError({
+            loginError: [error.message]
+            })
+            setOpen(true)
         }
     })
-
-    // const HandleLogin = (e) => {
-    //     e.preventDefault()
-
-    //     loginTheUser({
-    //         variables: {
-    //             email: loginInputs.email,
-    //             password: loginInputs.password
-    //         }
-    //     })
-
-    //     if (error) {
-    //         setLoginError({
-    //             loginError: [error.message]
-    //         })
-    //         setOpen(true)
-    //     }
-
-    //     if (called && loading) {
-    //         console.log(`Loading`)
-    //     }
-
-    //     if (data) {
-    //         dispatch(loginUser(data.loginUser))
-    //         dispatch(loginSuccess())
-    //         localStorage.setItem('token', data.loginUser.token )
-    //         history.push(`/rooms`)
-    //     }
-        
-    // }
 
     const handleLoginChange = (e) => {
         const {value, name} = e.target

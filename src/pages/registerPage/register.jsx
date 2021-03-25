@@ -50,7 +50,6 @@ const RegisterPage = () => {
             }, 5000)
         },
         onError(error) {
-            console.log(error.message)
             setRegisterErrors({
                 err: [error.message]
             })
@@ -94,7 +93,6 @@ const RegisterPage = () => {
 
     return (
         <main className="main3">
-            {console.log(registerErrors.err.length > 0)}
             <form className="registerform">
             {registerErrors.err.length > 0 ? 
                         registerErrors.err.map(item => {

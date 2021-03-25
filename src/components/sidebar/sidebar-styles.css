@@ -1,0 +1,31 @@
+.sidebar {
+    background-color: whitesmoke;
+    position: fixed;
+    width: 280px;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    right: 0;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0rem;
+}
+
+.profilelinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem 4rem;
+}
+
+.profilelinks a {
+    font-size: 1.5rem;
+    margin: 0.3rem auto;
+    text-decoration: none;
+    color: black;
+}

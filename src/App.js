@@ -18,12 +18,18 @@ import LoginPage from './pages/loginPage/login'
 import RegisterPage from './pages/registerPage/register'
 import RoomPage from './pages/homePage/homePage'
 import OneRoomPage from './pages/oneRoomPage/oneRoomPage'
+import MyBookingsPage from './pages/myBookingsPage/myBookingsPage'
 
 const App = () => {
 
+  const token = localStorage.getItem('token')
+
   const client = new ApolloClient({
     uri: 'http://localhost:8000/graphql',
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    headers: {
+      'auth': `Bearer ${token}` || null
+  }
   })
 
   const isTheUserLoggedIn = useSelector(state => state.isLoggedIn)
@@ -40,6 +46,7 @@ const App = () => {
                 <Route path="/register" render={() => isTheUserLoggedIn ? <Redirect to="/rooms"/> : <RegisterPage/> } /> 
                 <Route exact path="/rooms" render={() => isTheUserLoggedIn ? <RoomPage/> : <Redirect to="/" /> } /> 
                 <Route path="/rooms/:id" render={() => isTheUserLoggedIn ? <OneRoomPage/> : <Redirect to="/login" /> } /> 
+                <Route path="/mybookings" render={() => isTheUserLoggedIn ? <MyBookingsPage/> : <Redirect to="/login" /> } /> 
               </Switch>
             <Footer></Footer>  
           </BrowserRouter>

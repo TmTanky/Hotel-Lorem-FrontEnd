@@ -16,15 +16,8 @@ import './homePage-styles.css'
 const RoomPage = () => {
     
     const history = useHistory()
-    const token = localStorage.getItem('token')
     
-    const { loading, data } = useQuery(ALL_ROOMS, {
-        context: {
-            headers: {
-                'auth': `Bearer ${token}`
-            }
-        }
-    })
+    const { loading, data } = useQuery(ALL_ROOMS)
 
     // if (error) {
     //     console.log(error)

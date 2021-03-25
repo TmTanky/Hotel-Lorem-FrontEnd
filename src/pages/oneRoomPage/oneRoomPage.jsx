@@ -85,6 +85,13 @@ const OneRoomPage = () => {
 
     const theRoom = rooms.data.filter(room => room._id === urlParams.params.id)
 
+    const date1 = selectedDate.date.toLocaleDateString()
+    const date2 = new Date().toLocaleDateString()
+
+    var diff =  Math.floor(( Date.parse(date1) - Date.parse(date2) ) / 86400000)
+
+    console.log(diff)
+
     return (
         <div className="oneroombox">
             {loading ? <CircularProgress style={{margin: 'auto'}} /> : theRoom.map(room => {
@@ -124,17 +131,15 @@ const OneRoomPage = () => {
                                             }}
                                         />
                                         <Button variant="contained" color="primary" onClick={() => {
-                                            // console.log(room._id)
-                                            // console.log(selectedDate.date.toDateString().slice(4, selectedDate.length))
                                             bookARoom({
                                                 variables: {
                                                     theBookedRoom: room._id,
                                                     bookedBy: user,
-                                                    bookAt: selectedDate.date.toDateString().slice(4, selectedDate.length) 
+                                                    bookAt: selectedDate.date.toLocaleDateString() 
                                                 },
                                                 context: {
                                                     headers: {
-                                                        'auth': `Bearer ${token} `
+                                                        'auth': `Bearer ${token}`
                                                     }
                                                 }
                                             })

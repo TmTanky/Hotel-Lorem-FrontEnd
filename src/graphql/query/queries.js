@@ -21,6 +21,14 @@ export const LOGIN_USER = gql`
                 lastName
                 token
                 isAdmin
+                roomsBooked {
+                    _id
+                    bookAt
+                    theBookedRoom {
+                        name
+                        price
+                    }
+                }
             }
         } 
 `

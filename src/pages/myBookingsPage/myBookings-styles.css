@@ -1,0 +1,11 @@
+.mybookingsbox {
+    min-height: 85vh;
+    padding: 1rem 2rem;
+}
+
+.mybooking {
+    margin: 1rem 0rem;
+    background-color: #EEEE;
+    border-radius: 5px;
+    padding: 1rem;
+}
