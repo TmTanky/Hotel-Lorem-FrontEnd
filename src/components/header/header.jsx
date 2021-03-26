@@ -30,7 +30,7 @@ const Header = () => {
             <div className="navlinks">
                 <Link to="/"> Home </Link>
                 <Link to="/"> About  </Link>
-                {user.isAdmin ? <Link to="/"> Admin </Link> : ""}
+                {user.isAdmin ? <Link to="/admin"> Admin </Link> : ""}
                 {isUserLoggedIn ? <Link to="#" onClick={() => {
                     setProfileSideBar(true)
                 }} > Profile </Link> : "" }

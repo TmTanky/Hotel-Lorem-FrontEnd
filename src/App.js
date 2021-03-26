@@ -19,6 +19,9 @@ import RegisterPage from './pages/registerPage/register'
 import RoomPage from './pages/homePage/homePage'
 import OneRoomPage from './pages/oneRoomPage/oneRoomPage'
 import MyBookingsPage from './pages/myBookingsPage/myBookingsPage'
+import EditProfilePage from './pages/editProfilePage/editProfile'
+import AdminPage from './pages/adminPage/adminPage'
+import OngoingLink from './pages/adminPage/adminLinks/ongoing'
 
 const App = () => {
 
@@ -33,6 +36,7 @@ const App = () => {
   })
 
   const isTheUserLoggedIn = useSelector(state => state.isLoggedIn)
+  const user = useSelector(state => state.user.user)
 
   return (
     <div className="App">
@@ -47,6 +51,9 @@ const App = () => {
                 <Route exact path="/rooms" render={() => isTheUserLoggedIn ? <RoomPage/> : <Redirect to="/" /> } /> 
                 <Route path="/rooms/:id" render={() => isTheUserLoggedIn ? <OneRoomPage/> : <Redirect to="/login" /> } /> 
                 <Route path="/mybookings" render={() => isTheUserLoggedIn ? <MyBookingsPage/> : <Redirect to="/login" /> } /> 
+                <Route path="/myprofile" render={() => isTheUserLoggedIn ? <EditProfilePage/> : <Redirect to="/login" /> } /> 
+                <Route path="/admin" render={() => isTheUserLoggedIn && user.isAdmin ? <AdminPage/> : <Redirect to="/login" /> } /> 
+                <Route path="/admin/ongoing" component={OngoingLink} />
               </Switch>
             <Footer></Footer>  
           </BrowserRouter>

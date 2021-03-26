@@ -19,16 +19,13 @@ const RoomPage = () => {
     
     const { loading, data } = useQuery(ALL_ROOMS)
 
-    // if (error) {
-    //     console.log(error)
-    // }
-
     const [rooms, setRooms] = useState({
         data: []
     })
 
     useEffect(() => {
         if (data) {
+            console.log(data)
             setRooms({
                 data: data.allRooms
             })

@@ -1,0 +1,9 @@
+.adminbox {
+    min-height: 85vh;
+}
+
+.adminboxlinks {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: cadetblue;
+}

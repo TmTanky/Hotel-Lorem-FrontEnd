@@ -1,0 +1,16 @@
+.editprofilebox {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+}
+
+.editprofileform {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    margin: auto;
+    background-color: #EEEE;
+    border-radius: 5px;
+}

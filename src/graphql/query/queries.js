@@ -9,8 +9,17 @@ export const ALL_ROOMS = gql`
             price
             maxPersons
             type
+            userWhoBooked {
+                isCancelled
+                isDone
+                    bookedBy {
+                        firstName
+                        lastName
+                    }
+            }
         },
     }
+
 `
 
 export const LOGIN_USER = gql`
@@ -24,6 +33,8 @@ export const LOGIN_USER = gql`
                 roomsBooked {
                     _id
                     bookAt
+                    isDone
+                    isCancelled
                     theBookedRoom {
                         name
                         price

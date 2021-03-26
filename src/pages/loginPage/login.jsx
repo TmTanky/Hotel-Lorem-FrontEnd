@@ -46,6 +46,10 @@ const LoginPage = () => {
             setLoginError({
             loginError: [error.message]
             })
+            setLoginInputs({
+                email: "",
+                password: ""
+            })
             setOpen(true)
         }
     })
