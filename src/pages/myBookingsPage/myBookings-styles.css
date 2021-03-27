@@ -9,3 +9,8 @@
     border-radius: 5px;
     padding: 1rem;
 }
+
+.bookingslinks {
+    display: flex;
+    justify-content: space-evenly;
+}

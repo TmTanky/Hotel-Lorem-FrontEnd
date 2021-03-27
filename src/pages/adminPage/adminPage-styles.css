@@ -5,5 +5,15 @@
 .adminboxlinks {
     display: flex;
     justify-content: space-evenly;
-    background-color: cadetblue;
+}
+
+.adminboxlinks a {
+    border-bottom: solid 2px transparent;
+    transition-property: all;
+    font-size: 1.1rem;
+}
+
+.adminboxlinks a:hover {
+    border-bottom: solid 2px black;
+    transition-duration: 0.5s;
 }

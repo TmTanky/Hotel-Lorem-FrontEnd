@@ -18,3 +18,19 @@ export const ADD_BOOKED_ROOM = gql`
         }
     }
 `
+
+export const CANCEL_ROOM = gql`
+    mutation cancelRoom($roomID: ID!) {
+        cancelRoom(roomID: $roomID) {
+            name
+        }
+    }
+`
+
+export const MARK_AS_DONE = gql`
+    mutation markAsDone($roomID: ID!) {
+        markAsDone(roomID: $roomID) {
+            name
+        }
+    }
+`

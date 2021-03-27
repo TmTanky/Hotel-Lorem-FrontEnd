@@ -38,7 +38,8 @@ const AdminPage = () => {
     return (
 
         <div className="adminbox" >
-            <p style={{fontSize: '2rem', textAlign: 'center', padding: '3rem 0rem'}} > Welcome Admin <strong> {`${user.firstName} ${user.lastName} `} </strong> </p>
+            <p style={{fontSize: '2rem', textAlign: 'center', paddingTop: '3rem' }} > Welcome Admin </p>
+            <p style={{textAlign: 'center', paddingBottom: '3rem'}} > <strong> {`${user.firstName} ${user.lastName} `} </strong> </p>
 
             <div>
                 <nav className="adminboxlinks">

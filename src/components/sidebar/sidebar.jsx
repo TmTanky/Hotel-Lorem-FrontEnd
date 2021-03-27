@@ -28,7 +28,7 @@ const SideBar = ({trigger, close, user}) => {
                     <Link to="/myprofile"> My Profile </Link>
                         <Divider />
                     <Badge badgeContent={userBookedRooms ? userBookedRooms.length : ""} color="primary" >
-                        <Link to="/mybookings"> My Bookings </Link>
+                        <Link to="/mybookings/ongoing"> My Bookings </Link>
                     </Badge>
                         <Divider />
                 </div>

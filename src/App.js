@@ -22,6 +22,7 @@ import MyBookingsPage from './pages/myBookingsPage/myBookingsPage'
 import EditProfilePage from './pages/editProfilePage/editProfile'
 import AdminPage from './pages/adminPage/adminPage'
 import OngoingLink from './pages/adminPage/adminLinks/ongoing'
+import Ongoing from './pages/myBookingsPage/myBookingsLinks/ongoing'
 
 const App = () => {
 
@@ -51,9 +52,10 @@ const App = () => {
                 <Route exact path="/rooms" render={() => isTheUserLoggedIn ? <RoomPage/> : <Redirect to="/" /> } /> 
                 <Route path="/rooms/:id" render={() => isTheUserLoggedIn ? <OneRoomPage/> : <Redirect to="/login" /> } /> 
                 <Route path="/mybookings" render={() => isTheUserLoggedIn ? <MyBookingsPage/> : <Redirect to="/login" /> } /> 
+                <Route path="/mybookings/ongoing" render={() => isTheUserLoggedIn ? <Ongoing/> : <Redirect to="/login" /> } /> 
                 <Route path="/myprofile" render={() => isTheUserLoggedIn ? <EditProfilePage/> : <Redirect to="/login" /> } /> 
                 <Route path="/admin" render={() => isTheUserLoggedIn && user.isAdmin ? <AdminPage/> : <Redirect to="/login" /> } /> 
-                <Route path="/admin/ongoing" component={OngoingLink} />
+                <Route path="/admin/ongoing" render={() => isTheUserLoggedIn && user.isAdmin ? <OngoingLink/> : <Redirect to="/login" /> } />
               </Switch>
             <Footer></Footer>  
           </BrowserRouter>
