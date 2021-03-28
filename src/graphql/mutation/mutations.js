@@ -34,3 +34,11 @@ export const MARK_AS_DONE = gql`
         }
     }
 `
+
+export const REMOVE_ROOM = gql`
+    mutation removeRoom($roomID: ID!) {
+        removeRoom(roomID: $roomID) {
+            name
+        }
+    }
+`

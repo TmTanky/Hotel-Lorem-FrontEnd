@@ -17,7 +17,7 @@ const RoomPage = () => {
     
     const history = useHistory()
     
-    const { loading, data } = useQuery(ALL_ROOMS)
+    const { loading, data, refetch } = useQuery(ALL_ROOMS)
 
     const [rooms, setRooms] = useState({
         data: []
@@ -25,12 +25,11 @@ const RoomPage = () => {
 
     useEffect(() => {
         if (data) {
-            console.log(data)
             setRooms({
                 data: data.allRooms
-            })
+            }, refetch())
         }
-    }, [data])
+    }, [data, refetch])
 
     const bookRoom = (id) => {
         history.push(`/rooms/${id}`)

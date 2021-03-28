@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 
 // Redux
@@ -11,6 +11,7 @@ import SideBar from '../sidebar/sidebar'
 
 const Header = () => {
 
+    const history = useHistory()
     const isUserLoggedIn = useSelector(state => state.isLoggedIn)
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.user)
@@ -22,14 +23,13 @@ const Header = () => {
     }
 
     return (
-        <nav>
+        <nav className="head" >
             <div className="navlogo">
-                <h1> Hotel-Lorem </h1>
+                <h1 style={{cursor: 'pointer'}} onClick={() => history.push('/')} > Hotel-Lorem </h1>
             </div>
 
             <div className="navlinks">
-                <Link to="/"> Home </Link>
-                <Link to="/"> About  </Link>
+                {/* <Link to="/"> Home </Link> */}
                 {user.isAdmin ? <Link to="/admin/ongoing"> Admin </Link> : ""}
                 {isUserLoggedIn ? <Link to="#" onClick={() => {
                     setProfileSideBar(true)

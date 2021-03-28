@@ -41,8 +41,6 @@ const Ongoing = ({rooms}) => {
                     <p> Status: <strong> {Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000) <= 0 ? 'Done' : `${Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000)} ${Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000) <= 1 ? 'day' : 'days'} remaining` } </strong> </p>
                     {Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000) <= 0 ? item.isDone || item.isCancelled ? "" : <Button color="primary" style={{marginTop: '1rem'}} variant="contained" onClick={() => markAsDoneRoom(item._id) } > Mark as Done </Button>  : item.isDone || item.isCancelled ? "" : <Button color="primary" style={{marginTop: '1rem'}} variant="contained" onClick={() => cancelBooking(item._id) }  > Cancel </Button>}
 
-                    { item.isDone ? <p> Status: <strong> Done </strong> </p> : <p> Status: <strong> Cancelled </strong> </p> }
-
                 </div>
             }): <h2 style={{paddingTop: '5rem', textAlign: 'center'}}> You have no bookings, book now </h2> }
 

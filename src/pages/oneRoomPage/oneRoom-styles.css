@@ -17,6 +17,11 @@
     border-radius: 5px;
 }
 
+.oneroomcard img {
+    width: 50vw;
+    margin: 2rem auto 2rem auto;
+}
+
 .oneroomcard h1 {
     font-size: 3rem;
     margin-bottom: 1.5rem;
@@ -24,4 +29,28 @@
 
 .oneroomcard p {
     margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+
+
+    .oneroombox {
+        padding: 1rem;
+    }
+
+    .oneroomcard {
+        padding: 1rem;
+        height: 100%;
+        width: 100%;
+    }
+
+    .oneroomcard img {
+        width: 1rem;
+    }
+
+    .oneroomcard h1 {
+        font-size: 8vw;
+    }
+    
+
 }

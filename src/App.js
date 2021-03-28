@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { PersistGate } from 'redux-persist/integration/react'

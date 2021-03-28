@@ -7,6 +7,7 @@
 
 .sec1 {
     display: flex;
+    padding-top: 3rem;
 }
 
 header h1 {
@@ -33,6 +34,10 @@ header h1 {
 
 .intro2 {
     margin: 1rem;
+}
+
+.intro2 img {
+    width: 100%;
 }
 
 .getstartedbtn {
@@ -73,4 +78,42 @@ header h1 {
 .footerlogo h1 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+    .intro1 h1 {
+        font-size: 5vw;
+    }
+
+    .intro1 p {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sec2 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .intro1 h1 {
+        font-size: 10vw;
+    }
+
+    .intro1 p {
+        font-size: 4vw;
+    }
+
+    .sec1 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .intro1 {
+        margin: 0rem 1rem;
+    }
 }

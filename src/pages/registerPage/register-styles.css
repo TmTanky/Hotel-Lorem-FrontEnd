@@ -10,3 +10,10 @@
     margin: auto;
     flex-direction: column;
 }
+
+@media screen and (max-width: 500px) {
+    .registerform {
+        width: 100%;
+        margin: auto 1rem;
+    }
+}

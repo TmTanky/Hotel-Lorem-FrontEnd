@@ -17,3 +17,8 @@
     border-bottom: solid 2px black;
     transition-duration: 0.5s;
 }
+
+.adminboxstatus {
+    background-color: #EEEE;
+    border-radius: 5px;
+}

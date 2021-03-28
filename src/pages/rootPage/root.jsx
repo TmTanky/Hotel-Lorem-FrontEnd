@@ -12,7 +12,7 @@ const RootPage = () => {
                 <div className="intro1">
                     <h1> Pick a place that you need </h1>
                     <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat officiis eum hic. Labore id architecto iure adipisci, iste cupiditate delectus debitis vitae laborum inventore iusto modi expedita illum at mollitia quos officia corrupti eius. Debitis magnam suscipit aspernatur. Quasi assumenda nemo adipisci corporis dolores ex quisquam quae rerum commodi debitis! </p>
-                    <button className="getstartedbtn"> Get Started </button>
+                    <button className="getstartedbtn" style={{borderRadius: '25px', marginTop: '1rem'}}> Get Started </button>
                 </div>
 
                 <div className="intro2">

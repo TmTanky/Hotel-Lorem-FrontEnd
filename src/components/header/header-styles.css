@@ -1,4 +1,4 @@
-nav {
+.head {
     display: flex;
     padding: 1rem 0rem;
 }
@@ -30,3 +30,18 @@ nav {
     border-bottom: solid black 2px;
     transition-duration: 0.8s;
 } 
+
+@media screen and (max-width: 800px) {
+    .head {
+        flex-direction: column;
+    }
+
+    .navlogo {
+        margin: auto;
+    }
+
+    .navlinks {
+        margin: auto;
+        padding-top: 0.5rem;
+    }
+}

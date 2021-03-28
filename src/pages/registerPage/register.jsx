@@ -94,6 +94,7 @@ const RegisterPage = () => {
     return (
         <main className="main3">
             <form className="registerform">
+                <h1 style={{marginBottom: '0.5rem'}} > Register </h1>
             {registerErrors.err.length > 0 ? 
                         registerErrors.err.map(item => {
                             return <Collapse in={open} key={item} >
