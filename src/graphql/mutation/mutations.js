@@ -42,3 +42,19 @@ export const REMOVE_ROOM = gql`
         }
     }
 `
+
+export const CREATE_ROOM = gql`
+    mutation createRoom($name: String!, $type: String!, $price: Int!, $maxPersons: Int!, $description: String!) {
+        createRoom(name: $name, type: $type, price: $price, maxPersons: $maxPersons, description: $description) {
+            name
+        }
+    }    
+`
+
+export const DELETE_ROOM = gql`
+    mutation deleteRoom($roomID: ID!) {
+        deleteRoom(roomID: $roomID) {
+            name
+        }
+    }
+`

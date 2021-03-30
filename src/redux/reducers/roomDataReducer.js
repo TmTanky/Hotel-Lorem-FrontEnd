@@ -1,13 +1,13 @@
 const INITIAL_STATE = {
-    bookings: []
+    data: []
 }
 
-export const BookingsReducer = (state = INITIAL_STATE, action) => {
+export const RoomDataReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'ADD_BOOKING':
+        case 'LOAD_ROOMS':
             return {
                 ...state,
-                bookings: action.payload
+                data: action.payload
             }
         default:
             return state 

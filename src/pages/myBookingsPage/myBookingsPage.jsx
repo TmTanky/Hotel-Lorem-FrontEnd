@@ -14,12 +14,6 @@ const MyBookingsPage = () => {
     const userBookedRooms = useSelector(state => state.user.user.roomsBooked)
     const {path} = useRouteMatch()
 
-    // const date2 = new Date().toLocaleDateString()
-
-    // const markAsDone = (id) => {
-    //     console.log(id)
-    // }
-
     return (
         <div className="mybookingsbox">
 

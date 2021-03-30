@@ -22,3 +22,10 @@ export const logoutSuccess = () => {
         type: 'LOGOUT_SUCCESS'
     }
 }
+
+export const loadRooms = (data) => {
+    return {
+        type: 'LOAD_ROOMS',
+        payload: data
+    }
+}

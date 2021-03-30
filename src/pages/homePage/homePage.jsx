@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import {useQuery} from '@apollo/client'
 import {useHistory} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 // GraphQL
 import { ALL_ROOMS } from '../../graphql/query/queries'
+
+// Redux
+import { loadRooms } from '../../redux/actions/actions'
 
 // Components
 import RoomCard from '../../components/room-card/roomCard'
@@ -16,20 +20,15 @@ import './homePage-styles.css'
 const RoomPage = () => {
     
     const history = useHistory()
-    
-    const { loading, data, refetch } = useQuery(ALL_ROOMS)
-
-    const [rooms, setRooms] = useState({
-        data: []
-    })
+    const dispatch = useDispatch()
+    const rooms = useSelector(state => state.allRooms.data.allRooms)
+    const { loading, data } = useQuery(ALL_ROOMS)
 
     useEffect(() => {
         if (data) {
-            setRooms({
-                data: data.allRooms
-            }, refetch())
+            dispatch(loadRooms(data))
         }
-    }, [data, refetch])
+    }, [data, dispatch])
 
     const bookRoom = (id) => {
         history.push(`/rooms/${id}`)
@@ -37,7 +36,7 @@ const RoomPage = () => {
 
     return (
         <main className="main4">
-            {loading ? <CircularProgress /> : rooms.data.length === 0 ? loading : rooms.data.map(room => {
+            {loading ? <CircularProgress /> : rooms.length === 0 ? loading : rooms.map(room => {
                 return <div key={room._id} className="roombox">
                     <RoomCard room={room} bookRoom={bookRoom} />
                 </div>
