@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useQuery, useMutation} from '@apollo/client'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {useRouteMatch} from 'react-router-dom'
 
 import { Button, Fade, Backdrop, Modal } from '@material-ui/core'
@@ -9,9 +9,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
-// GraphQL
-import { ALL_ROOMS } from '../../graphql/query/queries';
+// Redux
+import { loadTheUser } from '../../redux/actions/actions'
 
+// GraphQL
+import { ALL_ROOMS, USER_INFO } from '../../graphql/query/queries';
 
 // CSS
 import './oneRoom-styles.css'
@@ -42,7 +44,7 @@ const OneRoomPage = () => {
 
     const urlParams = useRouteMatch()
     const classes = useStyles()
-
+    const dispatch = useDispatch()
     const { loading, error, data } = useQuery(ALL_ROOMS)
     const user = useSelector(state => state.user.user.userID)
     const [rooms, setRooms] = useState({
@@ -52,6 +54,13 @@ const OneRoomPage = () => {
     const [open, setOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState({
         date: new Date()
+    })
+    
+    const currentUserID = useSelector(state => state.user.user.userID)
+    const { refetch } = useQuery(USER_INFO, {
+        variables: {
+            userID: currentUserID
+        }
     })
 
     const handleDateChange = (date) => {
@@ -81,16 +90,20 @@ const OneRoomPage = () => {
         console.log(error)
     }
 
-    const [bookARoom] = useMutation(ADD_BOOKED_ROOM)
+    const [bookARoom] = useMutation(ADD_BOOKED_ROOM, {
+        onCompleted: (() => {
+            refetch((dataUser) => {
+                dispatch(loadTheUser(dataUser))
+            })
+        })
+    })
 
     const theRoom = rooms.data.filter(room => room._id === urlParams.params.id)
 
-    const date1 = selectedDate.date.toLocaleDateString()
-    const date2 = new Date().toLocaleDateString()
+    // const date1 = selectedDate.date.toLocaleDateString()
+    // const date2 = new Date().toLocaleDateString()
 
-    var diff =  Math.floor(( Date.parse(date1) - Date.parse(date2) ) / 86400000)
-
-    console.log(diff)
+    // var diff =  Math.floor(( Date.parse(date1) - Date.parse(date2) ) / 86400000)
 
     return (
         <div className="oneroombox">
@@ -109,7 +122,6 @@ const OneRoomPage = () => {
                         aria-describedby="transition-modal-description"
                         open={open}
                         onClose={handleClose}
-                        value={selectedDate.date}
                         className={classes.modal}
                         closeAfterTransition
                         BackdropComponent={Backdrop}
@@ -125,6 +137,7 @@ const OneRoomPage = () => {
                                             id="date-picker-dialog"
                                             label="Date picker dialog"
                                             format="MM/dd/yyyy"
+                                            value={selectedDate.date}
                                             onChange={handleDateChange}
                                             KeyboardButtonProps={{
                                                 'aria-label': 'change date',

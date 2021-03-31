@@ -1,17 +1,46 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import {Switch, Route, Link, useRouteMatch} from 'react-router-dom'
+// import { useQuery } from '@apollo/client'
 
 import Cancelled from './myBookingsLinks/cancelled'
 import Done from './myBookingsLinks/done'
 import Ongoing from './myBookingsLinks/ongoing'
 
+// GraphQL
+// import { USER_INFO, LOGIN_USER } from '../../graphql/query/queries'
+
+// Redux
+// import { loadTheUser } from '../../redux/actions/actions'
+
 // CSS
 import './myBookings-styles.css'
 
+
 const MyBookingsPage = () => {
 
-    const userBookedRooms = useSelector(state => state.user.user.roomsBooked)
+    // const currentUserID = useSelector(state => state.user.user.userID)
+    // const dispatch = useDispatch()
+    // const userBookedRooms = useSelector(state => state.user.user.roomsBooked)
+    const userBookedRooms = useSelector(state => state.userInfo)
+    // .user.userInfo.roomsBooked
+    // const { loading } = useQuery(USER_INFO, {
+    //     variables: {
+    //         userID: currentUserID
+    //     },
+    //     onCompleted: async (data) => {
+    //         dispatch(loadTheUser(data))
+    //     }
+    // })
+
+    // const currentUserID = useSelector(state => state.user.user.userID)
+    // const dispatch = useDispatch()
+    // const { data, refetch } = useQuery(USER_INFO, {
+    //     variables: {
+    //         userID: currentUserID
+    //     }
+    // })
+
     const {path} = useRouteMatch()
 
     return (
@@ -42,7 +71,7 @@ const MyBookingsPage = () => {
                     <Done rooms={userBookedRooms} />
                 </Route>
                 <Route exact path="/mybookings/cancel" >
-                    <Cancelled rooms={userBookedRooms} />
+                    <Cancelled  rooms={userBookedRooms} />
                 </Route>
             </Switch>
 

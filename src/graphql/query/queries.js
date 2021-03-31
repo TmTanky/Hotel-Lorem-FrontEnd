@@ -10,6 +10,7 @@ export const ALL_ROOMS = gql`
             maxPersons
             type
             userWhoBooked {
+                _id
                 isCancelled
                 isDone
                     bookedBy {
@@ -42,4 +43,25 @@ export const LOGIN_USER = gql`
                 }
             }
         } 
+`
+
+export const USER_INFO = gql`
+    query userInfo ($userID: ID!) {
+        userInfo (userID: $userID) {
+            firstName
+            lastName
+            username
+            email
+            roomsBooked {
+                    _id
+                    bookAt
+                    isDone
+                    isCancelled
+                    theBookedRoom {
+                        name
+                        price
+                    }
+            }
+        }
+    }
 `

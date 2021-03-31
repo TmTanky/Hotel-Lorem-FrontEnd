@@ -50,7 +50,7 @@
 .addroompopup form {
     background-color: #EEEE;
     border-radius: 5px;
-    padding: 2rem 2rem; 
+    padding: 2rem; 
     margin: 0rem 5rem;
     display: flex;
     justify-content: center;
@@ -63,4 +63,11 @@
     justify-content: flex-end;
     padding: 1rem 0rem;
     margin-right: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+    .addroompopup form {
+        margin: 0rem 1rem;
+        padding: 1rem;
+    }
 }

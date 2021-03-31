@@ -11,7 +11,7 @@ const DoneLink = ({rooms, loading}) => {
                     <h1 style={{margin: '0.5rem 0rem'}}  > {item.name} </h1>
                     <p style={{marginTop: '1.5rem'}} > List of persons who mark as done: </p>
                     {item.userWhoBooked.map(item => {
-                        return item.isDone === true ? <li key={item.bookedBy.firstName} style={{marginTop: '0.5rem'}} > <strong> {`${item.bookedBy.firstName} ${item.bookedBy.lastName}`} </strong> </li> : ""
+                        return item.isDone === true ? <li key={item._id} style={{marginTop: '0.5rem'}} > <strong> {`${item.bookedBy.firstName} ${item.bookedBy.lastName}`} </strong> </li> : ""
                     })}
                 </div>
             })}

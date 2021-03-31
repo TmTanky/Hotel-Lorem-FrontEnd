@@ -29,3 +29,16 @@ export const loadRooms = (data) => {
         payload: data
     }
 }
+
+export const loadTheUser = (data) => {
+    return {
+        type: 'LOAD_USER_INFO',
+        payload: data
+    }
+}
+
+export const unloadTheUser = () => {
+    return {
+        type: 'UNLOAD_THE_USER'
+    }
+}

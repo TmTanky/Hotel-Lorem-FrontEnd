@@ -33,7 +33,7 @@ const App = () => {
     cache: new InMemoryCache(),
     headers: {
       'auth': `Bearer ${token}` || null
-  }
+    }
   })
 
   const isTheUserLoggedIn = useSelector(state => state.isLoggedIn)

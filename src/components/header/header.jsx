@@ -3,7 +3,7 @@ import {Link, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 
 // Redux
-import { logoutUser, logoutSuccess } from '../../redux/actions/actions'
+import { logoutUser, logoutSuccess, unloadTheUser } from '../../redux/actions/actions'
 
 // CSS
 import './header-styles.css'
@@ -15,6 +15,9 @@ const Header = () => {
     const isUserLoggedIn = useSelector(state => state.isLoggedIn)
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.user)
+    const roomLength = useSelector(state => state.userInfo)
+    // roomLength.user.userInfo.roomsBooked.length
+    // Object.keys(roomLength.user).length === 0
 
     const [profileSideBar, setProfileSideBar] = useState(false)
 
@@ -37,11 +40,12 @@ const Header = () => {
                 {isUserLoggedIn ? <Link to="#" onClick={() => {
                     dispatch(logoutSuccess())
                     dispatch(logoutUser())
+                    dispatch(unloadTheUser())
                     localStorage.removeItem('token')
                 }} > Logout </Link> : <Link to="/login"> Login </Link> }
             </div>
 
-            <SideBar trigger={profileSideBar} user={user} close={close} > </SideBar>
+            <SideBar trigger={profileSideBar} roomLength={roomLength} user={user} close={close} > </SideBar>
 
         </nav>
     )
