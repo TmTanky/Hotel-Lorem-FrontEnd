@@ -58,3 +58,11 @@ export const DELETE_ROOM = gql`
         }
     }
 `
+
+export const UNCANCEL_ROOM = gql`
+    mutation unCancelRoom($roomID: ID!) {
+        unCancelRoom(roomID: $roomID) {
+            name
+        }
+    }
+`

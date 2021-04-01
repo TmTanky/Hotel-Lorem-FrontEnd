@@ -14,3 +14,39 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.ratebox {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.submitclose {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ratebox form {
+    background-color: #EEEE;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.submitreview {
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}

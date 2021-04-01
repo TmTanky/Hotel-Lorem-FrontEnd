@@ -42,3 +42,9 @@ export const unloadTheUser = () => {
         type: 'UNLOAD_THE_USER'
     }
 }
+
+export const eraseRoomData = () => {
+    return {
+        type: 'ERASE_ROOM_DATA'
+    }
+}

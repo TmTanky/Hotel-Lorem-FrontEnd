@@ -1,9 +1,13 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 // CSS
 import './root-styles.css'
 
 const RootPage = () => {
+
+    const history = useHistory()
 
     return (
         <main className="main1">
@@ -12,7 +16,8 @@ const RootPage = () => {
                 <div className="intro1">
                     <h1> Pick a place that you need </h1>
                     <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat officiis eum hic. Labore id architecto iure adipisci, iste cupiditate delectus debitis vitae laborum inventore iusto modi expedita illum at mollitia quos officia corrupti eius. Debitis magnam suscipit aspernatur. Quasi assumenda nemo adipisci corporis dolores ex quisquam quae rerum commodi debitis! </p>
-                    <button className="getstartedbtn" style={{borderRadius: '25px', marginTop: '1rem'}}> Get Started </button>
+                    {/* <button className="getstartedbtn" onClick={() => history.push('/register')} style={{borderRadius: '25px', marginTop: '1rem', padding: '0.7rem 0rem'}}> Get Started </button> */}
+                    <Button variant="contained" color="primary" onClick={() => history.push('/register')} style={{width: '130px', marginTop: '0.5rem', backgroundColor: 'black'}} > Get started </Button>
                 </div>
 
                 <div className="intro2">

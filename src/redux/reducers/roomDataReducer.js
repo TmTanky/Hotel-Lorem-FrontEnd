@@ -9,6 +9,11 @@ export const RoomDataReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 data: action.payload
             }
+        case 'ERASE_ROOM_DATA':
+            return {
+                ...state,
+                data: []
+            }    
         default:
             return state 
     }

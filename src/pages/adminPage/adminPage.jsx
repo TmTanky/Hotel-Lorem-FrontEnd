@@ -4,9 +4,11 @@ import {Switch, Route, Link, useRouteMatch} from 'react-router-dom'
 import {useQuery, useMutation} from '@apollo/client'
 
 // import CircularProgress from '@material-ui/core/CircularProgress';
-import {Button, TextField, TextareaAutosize} from '@material-ui/core'
+import {Button, TextField, TextareaAutosize,Collapse, IconButton} from '@material-ui/core'
 import CancelIcon from '@material-ui/icons/Cancel';
 import Zoom from '@material-ui/core/Zoom';
+import CloseIcon from '@material-ui/icons/Close'
+import { Alert } from '@material-ui/lab';
 
 // GraphQL
 import { ALL_ROOMS } from '../../graphql/query/queries'
@@ -31,6 +33,11 @@ const AdminPage = () => {
         data: []
     })
 
+    const [open, setOpen] = useState(false)
+    const [addRoomError, setAddRoomError] = useState({
+        roomError: []
+    })
+
     const [checked, setChecked] = useState(false);
     const closeAddForm = () => {
         setChecked(false)
@@ -46,13 +53,7 @@ const AdminPage = () => {
 
     const [deleteTheRoom] = useMutation(DELETE_ROOM)
     const [addTheRoomSubmit] = useMutation(CREATE_ROOM, {
-        variables: {
-            name: roomDetails.name,
-            type: roomDetails.type,
-            price: parseInt(roomDetails.price),
-            description: roomDetails.description,
-            maxPersons: parseInt(roomDetails.maxPersons)
-        },onError(err) {
+        onError(err) {
             console.log(err.message)
         }
     })
@@ -98,13 +99,72 @@ const AdminPage = () => {
                             </div>
 
                             <form>
+                            {addRoomError.roomError ? 
+                        addRoomError.roomError.map(err => {
+                            return <Collapse in={open} key={err} >
+                                        <Alert severity="warning" style={{marginBottom: '1rem'}}
+                                            action={
+                                                <IconButton
+                                                    aria-label="close"
+                                                    color="inherit"
+                                                    size="small"
+                                                    onClick={() => {
+                                                        setOpen(false);
+                                                        setAddRoomError({
+                                                            roomError: []
+                                                        })
+                                                    }}
+                                                    >
+                                                    <CloseIcon fontSize="inherit" />
+                                                </IconButton>
+                                            }
+                                            >
+                                            {err.msg}
+                                        </Alert>
+                                </Collapse>
+                    }) : ""}
                                 <TextField style={{marginBottom: '1rem'}} name="name" value={roomDetails.name} onChange={addRoomHandleChange} label="Name" />
                                 <TextField style={{marginBottom: '1rem'}} name="type" value={roomDetails.type} onChange={addRoomHandleChange} label="Type" />
                                 <TextField style={{marginBottom: '1rem'}} name="maxPersons" value={roomDetails.maxPersons} onChange={addRoomHandleChange} label="Max Persons" />
                                 <TextField style={{marginBottom: '1rem'}} name="price" value={roomDetails.price} onChange={addRoomHandleChange} label="Price" />
                                 <TextareaAutosize rowsMin={10} name="description" value={roomDetails.description} onChange={addRoomHandleChange} style={{padding: '0.5rem', fontSize: '1rem', outline: 'none'}} placeholder="Room Description" />
                                 <Button variant="contained" color="primary" onClick={() => {
-                                    addTheRoomSubmit()
+
+                                    const { name, type, description, price, maxPersons } = roomDetails
+
+                                    if (name === "" || type === "" || description === "" || price === "" || maxPersons === "") {
+                                        setOpen(true)
+                                        setRoomDetails({
+                                            name: "",
+                                            type: "",
+                                            description: "",
+                                            price: "",
+                                            maxPersons: ""
+                                        })
+                                        return addRoomError.roomError.push({ msg: 'Please fill all inputs.' })
+                                    }
+
+                                    if (maxPersons !== Number || price !== Number) {
+                                        setOpen(true)
+                                        setRoomDetails({
+                                            name: "",
+                                            type: "",
+                                            description: "",
+                                            price: "",
+                                            maxPersons: ""
+                                        })
+                                        return addRoomError.roomError.push({ msg: 'Price or Max Persons must be a number.' })
+                                    }
+
+                                    addTheRoomSubmit({
+                                        variables: {
+                                            name: roomDetails.name,
+                                            type: roomDetails.type,
+                                            price: parseInt(roomDetails.price),
+                                            description: roomDetails.description,
+                                            maxPersons: parseInt(roomDetails.maxPersons)
+                                        }
+                                    })
                                     refetch((data) => {
                                         setRooms(data)
                                     })
