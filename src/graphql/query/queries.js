@@ -9,6 +9,13 @@ export const ALL_ROOMS = gql`
             price
             maxPersons
             type
+            rating {
+                rating
+                ratingBy {
+                    firstName
+                    lastName
+                }
+            }
             userWhoBooked {
                 _id
                 isCancelled
@@ -58,9 +65,21 @@ export const USER_INFO = gql`
                     isDone
                     isCancelled
                     theBookedRoom {
+                        _id
                         name
                         price
+                        rating {
+                            rating
+                        }
                     }
+            }
+            roomsRated {
+                _id
+                rating
+                ratingBy {
+                    firstName
+                    lastName
+                }
             }
         }
     }

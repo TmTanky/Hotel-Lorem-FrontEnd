@@ -4,7 +4,7 @@ import {Switch, Route, Link, useRouteMatch} from 'react-router-dom'
 import {useQuery, useMutation} from '@apollo/client'
 
 // import CircularProgress from '@material-ui/core/CircularProgress';
-import {Button, TextField, TextareaAutosize,Collapse, IconButton} from '@material-ui/core'
+import {Button, TextField, TextareaAutosize, Collapse, IconButton} from '@material-ui/core'
 import CancelIcon from '@material-ui/icons/Cancel';
 import Zoom from '@material-ui/core/Zoom';
 import CloseIcon from '@material-ui/icons/Close'
@@ -34,6 +34,7 @@ const AdminPage = () => {
     })
 
     const [open, setOpen] = useState(false)
+    const [open2, setOpen2] = useState(false)
     const [addRoomError, setAddRoomError] = useState({
         roomError: []
     })
@@ -53,6 +54,9 @@ const AdminPage = () => {
 
     const [deleteTheRoom] = useMutation(DELETE_ROOM)
     const [addTheRoomSubmit] = useMutation(CREATE_ROOM, {
+        onCompleted: () => {
+            setOpen2(true)
+        },
         onError(err) {
             console.log(err.message)
         }
@@ -88,6 +92,28 @@ const AdminPage = () => {
 
                     <Zoom in={checked}>
                         <div className="addroompopup">
+
+                        <Collapse in={open2} className="submitdone" >
+                        <Alert
+                        action={
+                            <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setOpen2(false);
+                                refetch((data) => {
+                                    setRooms(data)
+                                })
+                            }}
+                            >
+                            <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                        }
+                        >
+                        New room added
+                        </Alert>
+                    </Collapse>
 
                             <div className="addroomclose" >
                                 <CancelIcon onClick={() => {
@@ -131,6 +157,8 @@ const AdminPage = () => {
                                 <Button variant="contained" color="primary" onClick={() => {
 
                                     const { name, type, description, price, maxPersons } = roomDetails
+                                    const convertPrice = parseInt(price)
+                                    const convertMaxPersons = parseInt(maxPersons)
 
                                     if (name === "" || type === "" || description === "" || price === "" || maxPersons === "") {
                                         setOpen(true)
@@ -144,7 +172,7 @@ const AdminPage = () => {
                                         return addRoomError.roomError.push({ msg: 'Please fill all inputs.' })
                                     }
 
-                                    if (maxPersons !== Number || price !== Number) {
+                                    if (isNaN(convertPrice) || isNaN(convertMaxPersons)) {
                                         setOpen(true)
                                         setRoomDetails({
                                             name: "",
@@ -158,11 +186,11 @@ const AdminPage = () => {
 
                                     addTheRoomSubmit({
                                         variables: {
-                                            name: roomDetails.name,
-                                            type: roomDetails.type,
-                                            price: parseInt(roomDetails.price),
-                                            description: roomDetails.description,
-                                            maxPersons: parseInt(roomDetails.maxPersons)
+                                            name: name,
+                                            type: type,
+                                            price: convertPrice,
+                                            description: description,
+                                            maxPersons: convertMaxPersons
                                         }
                                     })
                                     refetch((data) => {
