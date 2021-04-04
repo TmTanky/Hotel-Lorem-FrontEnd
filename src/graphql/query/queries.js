@@ -64,13 +64,15 @@ export const USER_INFO = gql`
                     bookAt
                     isDone
                     isCancelled
+                    isRated
+                    rating {
+                        _id
+                        rating
+                    }
                     theBookedRoom {
                         _id
                         name
                         price
-                        rating {
-                            rating
-                        }
                     }
             }
             roomsRated {

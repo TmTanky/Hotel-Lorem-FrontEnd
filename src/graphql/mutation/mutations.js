@@ -68,8 +68,8 @@ export const UNCANCEL_ROOM = gql`
 `
 
 export const RATE_ROOM = gql`
-    mutation rateRoom($roomID: ID!, $userID: ID!, $rating: Int!) {
-        rateRoom(roomID: $roomID, userID: $userID, rating: $rating) {
+    mutation rateRoom($roomID: ID!, $userID: ID!, $rating: Int!, $theRoomToUpdate: ID!) {
+        rateRoom(roomID: $roomID, userID: $userID, rating: $rating, theRoomToUpdate: $theRoomToUpdate ) {
             rating
         }
     }

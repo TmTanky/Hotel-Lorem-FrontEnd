@@ -22,7 +22,7 @@ const RoomCard = ({room, bookRoom}) => {
         <img src="https://image.freepik.com/free-photo/modern-studio-apartment-design-with-bedroom-living-space_1262-12375.jpg" style={{width: '100%'}} alt=""/>
         <h3> {room.name} </h3> 
         {/* <p> <StarRateIcon style={{margin: 'auto'}} /> <StarRateIcon style={{margin: 'auto'}} /> <StarRateIcon style={{margin: 'auto'}} /> <StarRateIcon style={{margin: 'auto'}} /> <StarRateIcon style={{margin: 'auto'}} /> </p> */}
-        <p> Ratings: <strong> {totalRating} </strong> </p>
+        <p> Ratings: <strong> {isNaN(totalRating) ? 'No reviews' : totalRating.toString().substring(0,3) } </strong> </p>
         <Button onClick={() => bookRoom(room._id)} color="primary" style={{marginTop: '2rem'}} variant="contained"> Details </Button>
     </div>
 }
