@@ -44,6 +44,11 @@
     margin: auto;
 }
 
+.ratebox form h1 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
 .submitreview {
     padding: 0.5rem;
     font-size: 1.3rem;
@@ -56,4 +61,16 @@
     position: absolute;
     top: 0;
     width: 100%;
+}
+
+@media screen and (max-width: 400px) {
+    .ratebox form {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .ratebox form h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
 }

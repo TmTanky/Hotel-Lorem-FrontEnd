@@ -44,7 +44,7 @@ const PopUpEditRate = ({checked2, editTheRate, roomers2, open2, setOpen2, setChe
                         </div>
 
                         <form>
-                            <h1 style={{margin: '0.5rem', fontSize: '2.5rem'}} > Edit a review </h1>
+                            <h1 style={{margin: '0.5rem'}} > Edit a review </h1>
                             {submitError2.error2.length > 0 ? submitError2.error2.map(err => {
                                 return <p key={err.msg} style={{color: 'red', fontSize: '0.8rem', margin: '0.3rem 0rem'}} > {err.msg} </p>
                             }) : ""}
