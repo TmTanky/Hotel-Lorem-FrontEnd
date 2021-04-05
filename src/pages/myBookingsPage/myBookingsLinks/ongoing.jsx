@@ -16,8 +16,6 @@ const Ongoing = ({rooms}) => {
     const [cancelRoom] = useMutation(CANCEL_ROOM)
     const [markAsDone, {error}] = useMutation(MARK_AS_DONE)
     const currentUserID = useSelector(state => state.user.user.userID)
-    // const userBookedRooms = useSelector(state => state.user.user.roomsBooked)
-    // const userBookedRooms = useSelector(state => state.userInfo.user.userInfo.roomsBooked)
     const dispatch = useDispatch()
     const { data, refetch } = useQuery(USER_INFO, {
         variables: {
@@ -57,9 +55,7 @@ const Ongoing = ({rooms}) => {
 
     return (
         <div>
-
-            {/* {loading ? <CircularProgress/> : <h1> hello </h1> } */}
-
+            
             {rooms ? rooms.user.userInfo.roomsBooked.map(item => {
                 return <div key={item._id} className="mybooking" >
                     <h1 style={{marginBottom: '1rem'}} > {item.theBookedRoom[0].name} </h1>

@@ -41,13 +41,6 @@ const RoomPage = () => {
             dispatch(loadTheUser(data2));
         }
     }, [loading2, data2, dispatch])
-
-    // useEffect(() => {
-    //     if (data && datatae ) {
-    //         dispatch(loadRooms(data))
-    //         dispatch(loadTheUser(datatae))
-    //     }
-    // }, [data, dispatch, datatae])
     
     const bookRoom = (id) => {
         history.push(`/rooms/${id}`)

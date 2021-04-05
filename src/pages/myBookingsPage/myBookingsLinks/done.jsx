@@ -3,18 +3,13 @@ import { useMutation, useQuery } from '@apollo/client'
 import {useSelector, useDispatch} from 'react-redux'
 
 // GraphQL
-import { RATE_ROOM } from '../../../graphql/mutation/mutations'
+import { RATE_ROOM, EDIT_RATE } from '../../../graphql/mutation/mutations'
 import { USER_INFO } from '../../../graphql/query/queries'
 
 // Redux 
 import { loadTheUser } from '../../../redux/actions/actions'
 
 import { Button } from '@material-ui/core'
-// import Zoom from '@material-ui/core/Zoom';
-// import CloseIcon from '@material-ui/icons/Close'
-// import Alert from '@material-ui/lab/Alert';
-// import IconButton from '@material-ui/core/IconButton';
-// import Collapse from '@material-ui/core/Collapse';
 
 // Components
 import PopUpRate from '../../../components/popupRate/popupRate'
@@ -42,6 +37,9 @@ const Done = ({rooms}) => {
     })
     const [checked2, setChecked2] = useState(false)
     const [open2, setOpen2] = useState(false)
+    const [submitError2, setSubmitError2] = useState({
+        error2: []
+    })
 
     const filteredRoom = rooms.user.userInfo.roomsBooked.filter(item => item.isDone === true)
     
@@ -73,35 +71,18 @@ const Done = ({rooms}) => {
             console.log(error.message)
         }
     })
-    
-    // const reviewSubmit = (e, roomID) => {
-    //     e.preventDefault()
 
-    //     if (review.data.length >= 2 ) {
-    //         return setSubmitError({
-    //             error: [{ msg: "Input must be 1 character." }]
-    //         })
-    //     }
-
-    //     if (review.data >= 6 || review.data <= 0) {
-    //         return setSubmitError({
-    //             error: [{ msg: "Review must be 1 - 5." }]
-    //         })
-    //     }
-
-    //     // rateTheRoom({
-    //     //     variables: {
-    //     //         userID:
-    //     //     }
-    //     // })
-
-    //     // setReview({ data: "" })
-    //     // setSubmitError({
-    //     //     error: []
-    //     // })
-    //     // setOpen(true)
-        
-    // }
+    const [editTheRate] = useMutation(EDIT_RATE, {
+        onCompleted: async () => {
+            setReview2({ data2: "" })
+            setOpen2(true)
+            refetch()
+        },
+        onError: (error) => {
+            console.log(error)
+            console.log(error.message)
+        }
+    })
 
     const cancelledRooms = filteredRoom.map(item => {
 
@@ -115,41 +96,16 @@ const Done = ({rooms}) => {
                 }} > Rate Room </Button> : <div> 
                     <Button color="primary" style={{marginTop: '1rem'}} variant="contained" disabled > Done </Button>
                     <Button color="primary" style={{marginTop: '1rem', marginLeft: '0.5rem'}} variant="contained" onClick={() => {
-                        // console.log(filteredRoom.filter(tae => tae._id === item._id)[0]._id)
                         setChecked2(true)
+                        setRoomers2(filteredRoom.filter(tae => tae._id === item._id)[0].rating._id)
                     }} > Edit Rating </Button>
                 </div>}
 
                 <PopUpRate roomers={roomers} checked={checked} pota={filteredRoom.filter(tae => tae._id === item._id)[0]._id} rooms={rooms} open={open} rateTheRoom={rateTheRoom} userID={userID} setOpen={setOpen} setChecked={setChecked} setReview={setReview} setSubmitError={setSubmitError} submitError={submitError} review={review} item={item} />
-                <PopUpEditRate roomers2={roomers2} setRoomers2={setRoomers2} review2={review2} setReview2={setReview2} checked2={checked2} setChecked2={setChecked2} open2={open2} setOpen2={setOpen2} />
+                <PopUpEditRate submitError2={submitError2} setSubmitError2={setSubmitError2} roomers2={roomers2} setRoomers2={setRoomers2} review2={review2} setReview2={setReview2} checked2={checked2} setChecked2={setChecked2} open2={open2} setOpen2={setOpen2} editTheRate={editTheRate} />
 
             </div>
     })
-
-    // const cancelledRooms2 = currentUser.map(tae => {
-    //     return filteredRoom.map(item => {
-    //         return <div className="mybooking" key={item._id} >
-    //         <h1 style={{marginBottom: '1rem'}} > {item.theBookedRoom[0].name} </h1>
-    //         <p> Status: <strong> {item.isDone ? 'Done' : "" } </strong> </p>
-    //         {item.isDone && item.isRated === false ? <Button color="primary" variant="contained" style={{marginTop: '1rem'}} onClick={() => {
-    //             setChecked(true)
-    //             setRoomers(filteredRoom.filter(tae => tae._id === item._id)[0]._id)
-    //         }} > Rate Room </Button> : <div> 
-    //             <Button color="primary" style={{marginTop: '1rem'}} variant="contained" disabled > Done </Button>
-    //             <Button color="primary" style={{marginTop: '1rem', marginLeft: '0.5rem'}} variant="contained" onClick={() => {
-    //                 // console.log(filteredRoom.filter(tae => tae._id === item._id)[0]._id)
-    //                 console.log(item)
-    //             }} > Edit Rating </Button>
-    //         </div>}
-
-    //         <PopUpRate roomers={roomers} checked={checked} pota={filteredRoom.filter(tae => tae._id === item._id)[0]._id} rooms={rooms} open={open} rateTheRoom={rateTheRoom} userID={userID} setOpen={setOpen} setChecked={setChecked} setReview={setReview} setSubmitError={setSubmitError} submitError={submitError} review={review} item={item} />
-    //         <PopUpEditRate />
-
-    //     </div>
-    //     })
-    // })
-
-    // console.log(cancelledRooms2)
 
     return (
         <div>
@@ -161,5 +117,3 @@ const Done = ({rooms}) => {
 }
 
 export default Done
-
-// return <p> {rate.rating} </p>

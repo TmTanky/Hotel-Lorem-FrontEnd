@@ -74,3 +74,19 @@ export const RATE_ROOM = gql`
         }
     }
 `
+
+export const EDIT_RATE = gql`
+    mutation editRate($reviewID: ID!, $newRating: Int!) {
+        editRate(reviewID: $reviewID, newRating: $newRating) {
+            rating
+        }
+    }
+`
+
+export const EDIT_ME = gql`
+    mutation editMe($userID: ID!, $firstName: String!, $lastName: String!) {
+        editMe(userID: $userID, firstName: $firstName, lastName: $lastName) {
+            firstName
+        }
+    }
+`

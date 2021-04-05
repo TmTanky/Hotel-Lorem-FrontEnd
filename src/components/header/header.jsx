@@ -14,11 +14,9 @@ const Header = () => {
     const history = useHistory()
     const isUserLoggedIn = useSelector(state => state.isLoggedIn)
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user.user)
+    const userisAdmin = useSelector(state => state.user.user)
+    const user = useSelector(state => state.userInfo)
     const roomLength = useSelector(state => state.userInfo)
-    // roomLength.user.userInfo.roomsBooked.length
-    // Object.keys(roomLength.user).length === 0
-
     const [profileSideBar, setProfileSideBar] = useState(false)
 
     const close = () => {
@@ -32,8 +30,7 @@ const Header = () => {
             </div>
 
             <div className="navlinks">
-                {/* <Link to="/"> Home </Link> */}
-                {user.isAdmin ? <Link to="/admin/ongoing"> Admin </Link> : ""}
+                {userisAdmin.isAdmin ? <Link to="/admin/ongoing"> Admin </Link> : ""}
                 {isUserLoggedIn ? <Link to="#" onClick={() => {
                     setProfileSideBar(true)
                 }} > Profile </Link> : "" }

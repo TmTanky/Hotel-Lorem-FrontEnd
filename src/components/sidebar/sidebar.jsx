@@ -12,19 +12,14 @@ import './sidebar-styles.css'
 
 const SideBar = ({trigger, close, user, roomLength}) => {
 
-    // const userBookedRooms = useSelector(state => state.user.user.roomsBooked)
-    // const isTheUserLoggedIn = useSelector(state => state.isLoggedIn)
-    // const userBookedRooms2 = useSelector(state => state.userInfo.user.userInfo.roomsBooked)
     const roomCounter = Object.keys(roomLength.user).length === 0 ? " " : roomLength.user.userInfo.roomsBooked.length
-
-    const {firstName, lastName} = user
 
     return <Slide direction="left" in={trigger} mountOnEnter unmountOnExit>
         <div className="sidebar" >
                 <CloseIcon onClick={close} style={{margin: '1rem'}} />
         
                 <div className="profile">
-                    <h1> {firstName} {lastName} </h1>
+                    {Object.keys(user.user).length === 0 ? "" : <h1> {`${user.user.userInfo.firstName} ${user.user.userInfo.lastName}`} </h1> }
                 </div>
         
                 <div className="profilelinks">

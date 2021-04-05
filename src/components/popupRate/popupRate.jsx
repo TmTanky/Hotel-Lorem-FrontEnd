@@ -50,6 +50,19 @@ const PopUpRate = ({checked, roomers, open, setOpen, setChecked, setReview, setS
                             }) : ""}
                             <input className="submitreview" value={review.data} type="number" min="1" onChange={(e) => setReview({ data: e.target.value }) } max="5" name="number"/>
                             <Button style={{marginTop: '1rem'}} onClick={() => {
+
+                                if (review.data.length >= 2 ) {
+                                    return setSubmitError({
+                                        error: [{ msg: "Input must be 1 character." }]
+                                    })
+                                }
+
+                                if (review.data >= 6 || review.data <= 0) {
+                                    return setSubmitError({
+                                        error: [{ msg: "Review must be 1 - 5." }]
+                                    })
+                                }
+
                                 rateTheRoom({
                                     variables: {
                                         roomID: item.theBookedRoom[0]._id,

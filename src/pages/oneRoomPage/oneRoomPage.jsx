@@ -57,7 +57,7 @@ const OneRoomPage = () => {
     })
     
     const currentUserID = useSelector(state => state.user.user.userID)
-    const { refetch } = useQuery(USER_INFO, {
+    const { refetch, loading: loading2, data: data2 } = useQuery(USER_INFO, {
         variables: {
             userID: currentUserID
         }
@@ -82,28 +82,26 @@ const OneRoomPage = () => {
             setRooms({
                 data: data.allRooms
             })
-
         }
     }, [data])
+
+    useEffect(() => {
+        if (loading2 === false && data2) {
+            dispatch(loadTheUser(data2))
+        }
+    })
 
     if (error) {
         console.log(error)
     }
 
     const [bookARoom] = useMutation(ADD_BOOKED_ROOM, {
-        onCompleted: (() => {
-            refetch((dataUser) => {
-                dispatch(loadTheUser(dataUser))
-            })
-        })
+        onCompleted: () => {
+            refetch()
+        }
     })
 
     const theRoom = rooms.data.filter(room => room._id === urlParams.params.id)
-
-    // const date1 = selectedDate.date.toLocaleDateString()
-    // const date2 = new Date().toLocaleDateString()
-
-    // var diff =  Math.floor(( Date.parse(date1) - Date.parse(date2) ) / 86400000)
 
     return (
         <div className="oneroombox">

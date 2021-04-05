@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux'
 import {Switch, Route, Link, useRouteMatch} from 'react-router-dom'
 import {useQuery, useMutation} from '@apollo/client'
 
-// import CircularProgress from '@material-ui/core/CircularProgress';
 import {Button, TextField, TextareaAutosize, Collapse, IconButton} from '@material-ui/core'
 import CancelIcon from '@material-ui/icons/Cancel';
 import Zoom from '@material-ui/core/Zoom';
@@ -24,7 +23,7 @@ import './adminPage-styles.css'
 
 const AdminPage = () => {
 
-    const user = useSelector(state => state.user.user)
+    const user = useSelector(state => state.userInfo.user.userInfo)
     const {path} = useRouteMatch()
 
     const { data, refetch, loading } = useQuery(ALL_ROOMS)
@@ -159,6 +158,18 @@ const AdminPage = () => {
                                     const { name, type, description, price, maxPersons } = roomDetails
                                     const convertPrice = parseInt(price)
                                     const convertMaxPersons = parseInt(maxPersons)
+
+                                    if (name.length >= 20) {
+                                        setOpen(true)
+                                        setRoomDetails({
+                                            name: "",
+                                            type: "",
+                                            description: "",
+                                            price: "",
+                                            maxPersons: ""
+                                        })
+                                        return addRoomError.roomError.push({ msg: 'Name must be below 20 Characters.' }) 
+                                    }
 
                                     if (name === "" || type === "" || description === "" || price === "" || maxPersons === "") {
                                         setOpen(true)

@@ -67,30 +67,6 @@ const RegisterPage = () => {
 
     }
 
-    // const handleRegister = (e) => {
-    //     e.preventDefault()
-
-    //     createUser({
-    //         variables: {
-    //             email: registerInputs.email,
-    //             firstName: registerInputs.firstName,
-    //             lastName: registerInputs.lastName,
-    //             username: registerInputs.username,
-    //             password: registerInputs.password
-    //         }
-    //     })
-        
-        // if (called) {
-        //     dispatch(loginUser(data.createUser))
-        //     dispatch(loginSuccess())
-        //     localStorage.setItem('token', data.createUser.token)
-        //     setTimeout(() => {
-        //         history.push(`/rooms`)
-        //     }, 2000)
-        // }
-        
-    // }
-
     return (
         <main className="main3">
             <form className="registerform">
@@ -119,9 +95,7 @@ const RegisterPage = () => {
                                         </Alert>
                                 </Collapse>
                     }) : "" }
-                    {/* {registerErrors.err.map(item => {
-                        return <h1> {item} </h1>
-                    })} */}
+                    
                 <TextField name="email" type="email" label="Email" style={{marginBottom: '1rem'}} value={registerInputs.email} onChange={handleRegisterChange} />
                 <TextField name="firstName" type="text" label="First Name" style={{marginBottom: '1rem'}} value={registerInputs.firstName} onChange={handleRegisterChange} />
                 <TextField name="lastName" type="text" label="Last Name" style={{marginBottom: '1rem'}} value={registerInputs.lastName} onChange={handleRegisterChange} />
