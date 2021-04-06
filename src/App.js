@@ -29,7 +29,7 @@ const App = () => {
   const token = localStorage.getItem('token')
 
   const client = new ApolloClient({
-    uri: 'http://localhost:8000/graphql',
+    uri: 'https://hotel-lorem-api-graphql.herokuapp.com/graphql',
     cache: new InMemoryCache(),
     headers: {
       'auth': `Bearer ${token}` || null
