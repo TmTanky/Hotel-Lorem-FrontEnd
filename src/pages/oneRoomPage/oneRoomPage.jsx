@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useQuery, useMutation} from '@apollo/client'
 import {useSelector, useDispatch} from 'react-redux'
 import {useRouteMatch} from 'react-router-dom'
+// import moment from 'moment';
 
 import { Button, Fade, Backdrop, Modal } from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -146,7 +147,7 @@ const OneRoomPage = () => {
                                                 variables: {
                                                     theBookedRoom: room._id,
                                                     bookedBy: user,
-                                                    bookAt: selectedDate.date.toLocaleDateString() 
+                                                    bookAt: selectedDate.date
                                                 },
                                                 context: {
                                                     headers: {
@@ -154,7 +155,15 @@ const OneRoomPage = () => {
                                                     }
                                                 }
                                             })
+                                            console.log(selectedDate.date)
                                             handleClose()
+                                            
+                                            // console.log(typeofselectedDate.date.toString())
+                                            // console.log(Date.parse(new Date()))
+                        
+                                            // console.log(Math.floor(( Date.parse(selectedDate.date.toDateString()) - Date.parse(new Date().toDateString()) ) / 86400000))
+                                            // console.log(new Date().toLocaleDateString())
+                                            // console.log(moment().format("MMM Do YY"))
                                         }} > Confirm </Button>
                                     </MuiPickersUtilsProvider>    
                             </div>

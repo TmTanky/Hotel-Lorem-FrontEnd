@@ -33,7 +33,7 @@ const Ongoing = ({rooms}) => {
         console.log(error.message)
     }
 
-    const currentDate = new Date().toLocaleDateString()
+    const currentDate = new Date().toDateString()
 
     const markAsDoneRoom = (id) => {
         markAsDone({
@@ -61,7 +61,7 @@ const Ongoing = ({rooms}) => {
                     <h1 style={{marginBottom: '1rem'}} > {item.theBookedRoom[0].name} </h1>
                     <p> ${item.theBookedRoom[0].price} </p>
                     <p> Status: {item.isCancelled ? <strong> Cancelled </strong> : <strong> {Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000) <= 0 ? 'Done' : `${Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000)} ${Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000) <= 1 ? 'day' : 'days'} remaining` } </strong> } </p>
-                    {Math.floor(( +Date.parse(item.bookAt) - +Date.parse(currentDate) ) / 86400000) <= 0 ? item.isDone || item.isCancelled ? "" : <Button color="primary" style={{marginTop: '1rem'}} variant="contained" onClick={() => markAsDoneRoom(item._id) } > Mark as Done </Button>  : item.isDone || item.isCancelled ? "" : <Button color="primary" style={{marginTop: '1rem'}} variant="contained" onClick={() => cancelBooking(item._id) }  > Cancel </Button>}
+                    {Math.floor(( Date.parse(item.bookAt) - Date.parse(currentDate) ) / 86400000) <= 0 ? item.isDone || item.isCancelled ? "" : <Button color="primary" style={{marginTop: '1rem'}} variant="contained" onClick={() => markAsDoneRoom(item._id) } > Mark as Done </Button>  : item.isDone || item.isCancelled ? "" : <Button color="primary" style={{marginTop: '1rem'}} variant="contained" onClick={() => cancelBooking(item._id) }  > Cancel </Button>}
                 </div>
             }): <h2 style={{paddingTop: '5rem', textAlign: 'center'}}> You have no bookings, book now </h2> }
 
